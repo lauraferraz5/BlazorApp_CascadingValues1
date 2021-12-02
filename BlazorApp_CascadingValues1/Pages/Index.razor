@@ -1,16 +1,22 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@*para mostrar que a atualização de valores se propaga para outros componentes - atualização feita em Counter.razor*@
+<body style="background-color:@config.CorDeFundo">
+    <h1>Hello, world!</h1>
 
-Welcome to your new app.
+    Welcome to your new app.
+</body>
 
 @*Componente pai de Pergunta.razor*@
 
-<CascadingValue Value="@Resposta">
+@*como o parâmetro Resposta não irá mudar, para indicar para o Blazoe que não monitore um valor, basta definir o valor do parâmetro IsFixed do componente CascadingValue para true (o valor padrão é false)*@
+<CascadingValue Value="@Resposta" IsFixed="true">
     <Pergunta></Pergunta>
 </CascadingValue>
 
 @code{
     //o componente filho vai poder acessar essa resposta
     string Resposta = "Estudar e praticar até me tornar uma ótima desenvolvedora";
+
+    [CascadingParameter] Config config { get; set; }
 }

@@ -1,41 +1,62 @@
 ﻿@page "/counter"
+    @*Acessando os parâmetros direto*@
+    @*<body style="background-color:@CorDeFundo">
+            <p style="font-size:@TamanhoFonte">Counter</p>
 
-@*Acessando os parâmetros direto*@
-@*<body style="background-color:@CorDeFundo">
-        <p style="font-size:@TamanhoFonte">Counter</p>
+            <p>Current count: @currentCount</p>
+
+            <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+        </body>*@
+
+    @*Acessando os parâmetros através da classe*@
+    <body style="background-color:@config.CorDeFundo">
+        <p style="font-size:@config.TamanhoFonte">Counter</p>
 
         <p>Current count: @currentCount</p>
 
         <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-    </body>*@
+    </body>
 
-@*Acessando os parâmetros através da classe*@
-<body style="background-color:@config.CorDeFundo">
-    <p style="font-size:@config.TamanhoFonte">Counter</p>
+@*atualização de valor via databinding*@
+<div style="display:flex">
+    Selecione a cor
+    <div style="width: 150px">
+        <select @bind="@config.CorDeFundo" class="form-control" style="margin-top: 15px">
+            <option value="green">Verde</option>
+            <option value="white">Branco</option>
+            <option value="red">Vermelho</option>
+            <option value="orange">Laranja</option>
+        </select>
+    </div>
+    Selecione o tamanho da fonte
+    <div style="width: 150px">
+        <select @bind="@config.TamanhoFonte" class="form-control" style="margin-top: 15px">
+            <option value="20px">20</option>
+            <option value="40px">40</option>
+            <option value="60px">60</option>
+            <option value="80px">80</option>
+        </select>
+    </div>
+</div>
 
-    <p>Current count: @currentCount</p>
+    @code {
+        private int currentCount = 0;
 
-    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-</body>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
+        private void IncrementCount()
+        {
+            currentCount++;
+        }
     }
-}
 
-@*componente filho de MainLayout.razor*@
+    @*componente filho de MainLayout.razor*@
 
-@*Acessando os parâmetros direto*@
-@*@code{
-        [CascadingParameter(Name = "CorDeFundo")] string CorDeFundo { get; set; }
-        [CascadingParameter(Name = "TamanhoFonte")] string TamanhoFonte { get; set; }
-    }*@
+    @*Acessando os parâmetros direto*@
+    @*@code{
+            [CascadingParameter(Name = "CorDeFundo")] string CorDeFundo { get; set; }
+            [CascadingParameter(Name = "TamanhoFonte")] string TamanhoFonte { get; set; }
+        }*@
 
-@*Acessando os parâmetros através da classe*@
-@code{
-    [CascadingParameter] Config config { get; set; }
-}
+    @*Acessando os parâmetros através da classe*@
+    @code{
+        [CascadingParameter] Config config { get; set; }
+    }
