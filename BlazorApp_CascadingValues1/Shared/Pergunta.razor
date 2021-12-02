@@ -1,0 +1,12 @@
+﻿@*componente filho Index.razor*@
+
+<h1>Pergunta</h1>
+
+<h1>Qual o seu objetivo profissional atual?</h1>
+<hr />
+<h1>@Valor</h1>
+
+@code{
+    //para obter o valor passado pelo componente pai usa o atributo CascadingParameter e definir do mesmo tipo do parâmetro que está recebendo(nesse caso, string)
+    [CascadingParameter] string Valor { get; set; } //nome da propriedade e não nome do parâmetro definido no componente pai
+}

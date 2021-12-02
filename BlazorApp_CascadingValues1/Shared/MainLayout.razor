@@ -1,0 +1,40 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+        </div>
+
+        <div class="content px-4">
+            @*Acessando os parâmetros direto*@
+            @*<CascadingValue Value="@Cor" Name="CorDeFundo">
+                <CascadingValue Value="@Tamanho" Name="TamanhoFonte">
+                    @Body
+                </CascadingValue>
+            </CascadingValue>*@
+
+            @*Acessando os parâmetros através da classe*@
+            <CascadingValue Value="@config">
+                    @Body
+            </CascadingValue>
+        </div>
+    </div>
+</div>
+
+@*componente pai de Counter.razor com mais de um parâmetro em cascata - define mais de um CascadingValue*@
+@*quando tem mais de um parâmetro do mesmo tipo, tem que definir um nome pra eles - Name*@
+@*@code{
+    private string Cor = "cyan";
+    private string Tamanho = "60px";
+}*@
+
+@*acessando os parâmetros através de uma classe - que estão em Config.cs*@
+@code{
+    Config config = new Config();
+}
+

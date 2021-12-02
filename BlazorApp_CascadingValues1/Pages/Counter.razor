@@ -1,0 +1,41 @@
+﻿@page "/counter"
+
+@*Acessando os parâmetros direto*@
+@*<body style="background-color:@CorDeFundo">
+        <p style="font-size:@TamanhoFonte">Counter</p>
+
+        <p>Current count: @currentCount</p>
+
+        <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+    </body>*@
+
+@*Acessando os parâmetros através da classe*@
+<body style="background-color:@config.CorDeFundo">
+    <p style="font-size:@config.TamanhoFonte">Counter</p>
+
+    <p>Current count: @currentCount</p>
+
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</body>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+
+@*componente filho de MainLayout.razor*@
+
+@*Acessando os parâmetros direto*@
+@*@code{
+        [CascadingParameter(Name = "CorDeFundo")] string CorDeFundo { get; set; }
+        [CascadingParameter(Name = "TamanhoFonte")] string TamanhoFonte { get; set; }
+    }*@
+
+@*Acessando os parâmetros através da classe*@
+@code{
+    [CascadingParameter] Config config { get; set; }
+}
